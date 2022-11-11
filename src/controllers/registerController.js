@@ -1,15 +1,19 @@
 const express = require("express");
-const validadeCPF = require("../middlewares/validadeCPF");
-const verifyExistsCPF = require("../middlewares/verifyCPF");
-const createAccount = require("../services/userService");
-
 const router = express.Router();
 
-router.post("/register", verifyExistsCPF, validadeCPF, async (req, res) => {
-  try {
-    const userData = req.body;
+const validadeCPF = require("../middlewares/validadeCPF");
+const validadeName = require("../middlewares/validateName");
+const createAccount = require("../services/userService");
 
-    const registerUser = await createAccount(userData);
+router.post("/register", validadeCPF, validadeName, async (req, res) => {
+  try {
+    const registerUser = await createAccount(req.body);
+
+    if (registerUser.error) {
+      return res
+        .status(500)
+        .json({ message: "Sua conta Bancaria não foi registrada!" });
+    }
 
     return res.status(201).json({
       message: "Sua conta bancária foi criada com Sucesso!",

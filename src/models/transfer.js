@@ -1,13 +1,18 @@
 const mongoose = require("../database");
 
-const userSchema = new mongoose.Schema({
-  name: {
-    type: String,
+const transferSchema = new mongoose.Schema({
+  amount: {
+    type: Number,
     require: true,
     unique: true,
     required: true,
   },
-  cpf: {
+  user_cpf: {
+    type: String,
+    unique: true,
+    required: true,
+  },
+  user_cpf: {
     type: String,
     unique: true,
     required: true,
@@ -16,11 +21,7 @@ const userSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  balance: {
-    type: Number,
-    default: 0,
-  },
 });
-const User = mongoose.model("users", userSchema);
+const Transfer = mongoose.model("transfers", transferSchema);
 
 module.exports = User;

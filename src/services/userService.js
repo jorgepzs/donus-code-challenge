@@ -1,10 +1,11 @@
-const formatCPF = require("../utils/formatCPF");
+const User = require("../models/user");
+
 const createAccount = async (body) => {
   try {
     const { name } = body;
-    const cpf = formatCPF(body.cpf);
+    const { cpf } = body;
 
-    return await User.create({ name, cpf });
+    return User.create({ name, cpf });
   } catch (error) {
     return error;
   }
