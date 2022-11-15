@@ -4,18 +4,16 @@ const transferSchema = new mongoose.Schema({
   amount: {
     type: Number,
     require: true,
-    unique: true,
+    required: true,
+  },
+  reciver_cpf: {
+    type: String,
+    unique: false,
     required: true,
   },
   user_cpf: {
     type: String,
-    unique: true,
-    required: true,
-  },
-  user_cpf: {
-    type: String,
-    unique: true,
-    required: true,
+    unique: false,
   },
   createdAt: {
     type: Date,
@@ -24,4 +22,4 @@ const transferSchema = new mongoose.Schema({
 });
 const Transfer = mongoose.model("transfers", transferSchema);
 
-module.exports = User;
+module.exports = Transfer;

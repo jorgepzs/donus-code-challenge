@@ -10,9 +10,7 @@ router.post("/register", validadeCPF, validadeName, async (req, res) => {
     const registerUser = await createAccount(req.body);
 
     if (registerUser.error) {
-      return res
-        .status(500)
-        .json({ message: "Sua conta Bancaria não foi registrada!" });
+      return res.status(400).json(registerUser.error.message);
     }
 
     return res.status(201).json({

@@ -1,11 +1,5 @@
-const User = require("../models/user");
-
 const validateCPF = async (req, res, next) => {
   const { cpf } = req.body;
-
-  if (await User.findOne({ cpf })) {
-    return res.status(400).json({ message: `o CPF:${cpf} ja está cadastrado` });
-  }
 
   if (!cpf)
     return res

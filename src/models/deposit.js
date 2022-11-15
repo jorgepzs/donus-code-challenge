@@ -4,19 +4,14 @@ const depositSchema = new mongoose.Schema({
   amount: {
     type: Number,
     require: true,
-    unique: true,
     required: true,
   },
-  user_cpf: {
+  cpf_reciver: {
     type: String,
-    unique: true,
     required: true,
+    unique: false,
   },
-  user_cpf: {
-    type: String,
-    unique: true,
-    required: true,
-  },
+
   createdAt: {
     type: Date,
     default: Date.now,

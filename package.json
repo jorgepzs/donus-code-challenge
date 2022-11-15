@@ -2,11 +2,11 @@
   "name": "donus-code-challenge",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js",
-    "dev": "node index.js"
+    "test": "NODE_ENV=test jest",
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js --ignore src/test"
   },
   "repository": {
     "type": "git",
@@ -24,9 +24,11 @@
     "dotenv": "^16.0.3",
     "eslint": "^8.27.0",
     "express": "^4.18.2",
+    "jest": "^29.3.1",
     "mongo": "^0.1.0",
     "mongoose": "^6.7.2",
-    "prettier": "^2.7.1"
+    "prettier": "^2.7.1",
+    "supertest": "^6.3.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
