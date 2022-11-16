@@ -1,4 +1,4 @@
-const mongoose = require("../database");
+const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -9,12 +9,16 @@ const userSchema = new mongoose.Schema({
   },
   cpf: {
     type: String,
-    unique: true,
     required: true,
+    unique: true,
   },
   createdAt: {
     type: Date,
     default: Date.now,
+  },
+  balance: {
+    type: Number,
+    default: 0,
   },
 });
 const User = mongoose.model("users", userSchema);

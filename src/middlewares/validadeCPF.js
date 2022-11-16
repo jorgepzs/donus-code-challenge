@@ -1,7 +1,7 @@
 const validateCPF = async (req, res, next) => {
   const { cpf } = req.body;
 
-  if (cpf === "")
+  if (!cpf)
     return res
       .status(400)
       .json({ message: "O campo CPF não pode estar vázio" });
