@@ -6,8 +6,8 @@ const app = require("../../app");
 describe("Create Deposit", () => {
   beforeAll(async () => {
     return await User.create({
-      name: "jose carlos silva",
-      cpf: "33344333995",
+      name: "joao carlos silva",
+      cpf: "33344333999",
     });
   });
   afterAll(async () => {
@@ -17,7 +17,7 @@ describe("Create Deposit", () => {
   });
   it("when amount and CPF account is valid ", async () => {
     const createDeposit = await request(app).put("/transaction/deposit").send({
-      cpf: "33344333995",
+      cpf: "33344333999",
       amount: "200",
     });
     expect(createDeposit.status).toBe(201);
@@ -33,7 +33,7 @@ describe("Create Deposit", () => {
 
   it("when amount greater than 2000", async () => {
     const createDeposit = await request(app).put("/transaction/deposit").send({
-      cpf: "33344333995",
+      cpf: "33344333999",
       amount: 2500,
     });
     expect(createDeposit.status).toBe(400);
@@ -41,7 +41,7 @@ describe("Create Deposit", () => {
 
   it("when amount is empty", async () => {
     const createDeposit = await request(app).put("/transaction/deposit").send({
-      cpf: "33344333995",
+      cpf: "33344333999",
       amount: "",
     });
     expect(createDeposit.status).toBe(400);

@@ -9,7 +9,7 @@ const createAccount = async (body) => {
       return {
         error: {
           code: 400,
-          message: `o CPF ${formatCPF(cpf)} ja está cadastrado`,
+          message: `the CPF ${formatCPF(cpf)} already in use`,
         },
       };
     }
@@ -18,7 +18,7 @@ const createAccount = async (body) => {
       return {
         error: {
           code: 400,
-          message: `o Nome ${name} ja está cadastrado`,
+          message: `The Name ${name} already in use`,
         },
       };
     }

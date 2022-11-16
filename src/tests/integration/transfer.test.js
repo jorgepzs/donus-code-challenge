@@ -2,26 +2,25 @@ const request = require("supertest");
 const User = require("../../models/user");
 const Transfer = require("../../models/Transfer");
 const app = require("../../app");
-const Deposit = require("../../models/Deposit");
 
 describe("Create Transfer", () => {
   beforeAll(async () => {
-    const createSender = User.create({
+    const createSender = await User.create({
       name: "jose carlos silva",
       cpf: "33344333995",
     });
-    const putBalanceSender = Deposit.create({
-      amount: 2000,
-      cpf_reciver: "33344333995",
-    });
+    const updateBalanceSender = await User.updateOne(
+      { cpf: "33344333995" },
+      { $inc: { balance: 4000 } }
+    );
 
-    const createReciver = User.create({
+    const createReciver = await User.create({
       name: "Joao da Silva Sauro",
       cpf: "69666888554",
     });
-    return await putBalanceSender, createSender, createReciver;
+    return updateBalanceSender, createSender, createReciver;
   });
-  afterEach(async () => {
+  afterAll(async () => {
     const deleteUsers = User.deleteMany();
     const deleteTransfers = Transfer.deleteMany();
     return await deleteUsers, deleteTransfers;

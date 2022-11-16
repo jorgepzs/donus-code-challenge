@@ -14,9 +14,9 @@ router.put("/deposit", validadeCPF, validadeAmount, async (req, res) => {
       return res.status(400).json(deposit.error.message);
     }
     return res.status(201).json({
-      message: `Seu depósito na conta ${formatCPF(
+      message: `your deposit in the account ${formatCPF(
         cpf
-      )} no valor de ${amount} foi efetuado com Sucesso!`,
+      )} in the amount of ${amount} was performed successfully!`,
     });
   } catch (error) {
     return res.status(500).send(error);

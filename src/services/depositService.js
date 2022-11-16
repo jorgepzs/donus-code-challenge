@@ -8,7 +8,10 @@ const createDeposit = async (body) => {
 
     if (!(await User.findOne({ cpf }))) {
       return {
-        error: { code: 404, message: `conta ${formatCPF(cpf)} não encontrada` },
+        error: {
+          code: 404,
+          message: `the account with ${formatCPF(cpf)} was not found`,
+        },
       };
     }
 
@@ -16,8 +19,7 @@ const createDeposit = async (body) => {
       return {
         error: {
           code: 400,
-          message:
-            "Os depósitos só podem ser feitos com valores menores que R$2000,00",
+          message: "Deposits can only be made with amounts less than R$2000.00",
         },
       };
     }

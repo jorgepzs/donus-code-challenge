@@ -14,7 +14,7 @@ router.post("/register", validadeCPF, validadeName, async (req, res) => {
     }
 
     return res.status(201).json({
-      message: "Sua conta bancária foi criada com Sucesso!",
+      message: "your bank account was created successfully !",
     });
   } catch (error) {
     return res.send(error);

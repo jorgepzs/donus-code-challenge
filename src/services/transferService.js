@@ -8,12 +8,28 @@ const createTransfer = async (body) => {
 
     //verifications
     const getBalanceUser = await User.findOne({ cpf });
-
+    const reciver = await User.findOne({ cpf: reciver_cpf });
+    if (!getBalanceUser) {
+      return {
+        error: {
+          code: 400,
+          message: `the account with ${formatCPF(cpf)} was not found`,
+        },
+      };
+    }
+    if (!reciver) {
+      return {
+        error: {
+          code: 400,
+          message: `the account with ${formatCPF(reciver_cpf)} was not found`,
+        },
+      };
+    }
     if (getBalanceUser.balance < amount) {
       return {
         error: {
           code: 400,
-          message: `Não possui saldo suficiente, Seu saldo é de R$ ${getBalanceUser.balance}`,
+          message: `does not have sufficient balance, its balance is  ${getBalanceUser.balance}`,
         },
       };
     }
@@ -21,23 +37,7 @@ const createTransfer = async (body) => {
       return {
         error: {
           code: 400,
-          message: `Você não pode transferir para você mesmo!!`,
-        },
-      };
-    }
-    if (!getBalanceUser) {
-      return {
-        error: {
-          code: 400,
-          message: `A conta ${formatCPF(cpf)} não foi encontrada`,
-        },
-      };
-    }
-    if (!(await User.findOne({ cpf: reciver_cpf }))) {
-      return {
-        error: {
-          code: 400,
-          message: `A conta ${formatCPF(reciver_cpf)} não foi encontrada`,
+          message: `you cannot transfer to yourself !!`,
         },
       };
     }
@@ -59,8 +59,8 @@ const createTransfer = async (body) => {
     });
 
     return putBalanceUser, putBalanceReciver, registerTransfer;
-  } catch (error) {
-    return error;
+  } catch (Error) {
+    return Error;
   }
 };
 module.exports = createTransfer;

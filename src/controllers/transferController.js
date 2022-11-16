@@ -11,6 +11,7 @@ router.put(
   validadeCPF,
   validadeAmount,
   validateReciverCPF,
+
   async (req, res) => {
     const { amount, reciver_cpf } = req.body;
 
@@ -22,9 +23,9 @@ router.put(
       }
 
       return res.status(201).json({
-        message: `Sua transferencia para a conta ${formatCPF(
+        message: `Your transfer to account${formatCPF(
           reciver_cpf
-        )} no valor de ${amount} foi efetuado com Sucesso!`,
+        )} amounting to  ${amount} was successful!`,
       });
     } catch (error) {
       return res.status(500).send(error);
