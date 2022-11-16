@@ -23,6 +23,6 @@
 
 # Rodar os testes de integração
 
-  <li>Crie um arquivo .env.local **na raíz do projeto** com o seguinte conteúdo: MONGO_URL=mongodb+srv://user_tester:1234@cluster0.nwsnovi.mongodb.net/tests
+  <li>Crie um arquivo .env.test **na raíz do projeto** com o seguinte conteúdo: MONGO_URL=mongodb+srv://user_tester:1234@cluster0.nwsnovi.mongodb.net/tests
 </li>
   <li>Rode os testes<strong>npm run test</strong></li>
