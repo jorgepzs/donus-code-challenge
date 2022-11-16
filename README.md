@@ -15,7 +15,7 @@
 <ol>
   <li>Clone essse repositório <strong>git clone https://github.com/jorgepzs/donus-code-challenge.git</strong></li>
   <li>Instale as dependências <strong>npm install</strong></li>
-  <li>Crie um arquivo .env **na raíz do projeto** com o seguinte conteúdo: MONGO_URL=mongodb+srv://user_tester:1234@cluster0.nwsnovi.mongodb.net/donus_dev
+  <li>Crie um arquivo .env **na raíz do projeto** contento da variavel MONGO_URL para desenvolvimento. 
 </strong></li>
   <li>Rode o Projeto <strong>npm run start</strong></li>
 </ol>
@@ -23,6 +23,6 @@
 
 # Rodar os testes de integração
 
-  <li>Crie um arquivo .env.test **na raíz do projeto** com o seguinte conteúdo: MONGO_URL=mongodb+srv://user_tester:1234@cluster0.nwsnovi.mongodb.net/tests
+  <li>Crie um arquivo .env.test **na raíz do projeto** contento a variável de ambiente MONGO_URL para testes.
 </li>
   <li>Rode os testes <strong>npm run test</strong></li>
