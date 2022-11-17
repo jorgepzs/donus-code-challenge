@@ -25,7 +25,7 @@ const createTransfer = async (body) => {
         },
       };
     }
-    if (getBalanceUser.balance < amount) {
+    if (getBalanceUser.balance <= amount) {
       return {
         error: {
           code: 400,
