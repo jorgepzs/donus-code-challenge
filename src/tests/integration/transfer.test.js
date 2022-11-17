@@ -1,37 +1,29 @@
 const request = require("supertest");
 const User = require("../../models/user");
-const Transfer = require("../../models/Transfer");
 const app = require("../../app");
 
 describe("Create Transfer", () => {
   beforeAll(async () => {
-    const createSender = await User.create({
-      name: "jose carlos silva",
-      cpf: "33344333995",
-    });
-    const updateBalanceSender = await User.updateOne(
-      { cpf: "33344333995" },
-      { $inc: { balance: 4000 } }
-    );
-
-    const createReciver = await User.create({
-      name: "Joao da Silva Sauro",
-      cpf: "69666888554",
-    });
-    return updateBalanceSender, createSender, createReciver;
-  });
-  afterAll(async () => {
-    const deleteUsers = User.deleteMany();
-    const deleteTransfers = Transfer.deleteMany();
-    return await deleteUsers, deleteTransfers;
+    return await User.insertMany([
+      {
+        name: "josue maria de paula",
+        cpf: "75412999885",
+      },
+      {
+        name: "Joao da Silva Sauro",
+        cpf: "25666888554",
+      },
+    ]);
   });
   it("when amount, CPF and reciver_cpf is valid ", async () => {
+    await User.updateOne({ cpf: "75412999885" }, { $inc: { balance: 4000 } });
+
     const createTransfer = await request(app)
       .put("/transaction/transfer")
       .send({
-        cpf: "33344333995",
+        cpf: "75412999885",
         amount: "200",
-        reciver_cpf: "69666888554",
+        reciver_cpf: "25666888554",
       });
     expect(createTransfer.status).toBe(201);
   });
@@ -41,7 +33,7 @@ describe("Create Transfer", () => {
       .send({
         cpf: "44578423654",
         amount: 400,
-        reciver_cpf: "69666888554",
+        reciver_cpf: "25666888554",
       });
     expect(createTransfer.status).toBe(400);
   });
@@ -50,7 +42,7 @@ describe("Create Transfer", () => {
     const createTransfer = await request(app)
       .put("/transaction/transfer")
       .send({
-        cpf: "33344333995",
+        cpf: "75412999885",
         amount: 2500,
         reciver_cpf: "69666245551",
       });
@@ -61,7 +53,7 @@ describe("Create Transfer", () => {
     const createTransfer = await request(app)
       .put("/transaction/transfer")
       .send({
-        cpf: "33344333995",
+        cpf: "75412999885",
         amount: "",
         reciver_cpf: "69666888551",
       });
@@ -81,7 +73,7 @@ describe("Create Transfer", () => {
     const createTransfer = await request(app)
       .put("/transaction/transfer")
       .send({
-        cpf: "33344333995",
+        cpf: "75412999885",
         amount: "750",
         reciver_cpf: "",
       });
@@ -93,7 +85,7 @@ describe("Create Transfer", () => {
       .send({
         cpf: "49490088855",
         amount: 4600,
-        reciver_cpf: 69666888554,
+        reciver_cpf: 25666888554,
       });
     expect(createTransfer.status).toBe(400);
   });
@@ -103,7 +95,7 @@ describe("Create Transfer", () => {
       .send({
         cpf: "49490088855",
         amount: -600,
-        reciver_cpf: 69666888554,
+        reciver_cpf: 25666888554,
       });
     expect(createTransfer.status).toBe(400);
   });
