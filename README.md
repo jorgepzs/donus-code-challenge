@@ -1,4 +1,4 @@
-**Donus Code Challeng**
+# Donus Code Challeng
 
 [x] Para abrir uma conta é necessário apenas o nome completo e CPF da pessoa, mas só é permitido uma conta por pessoa;
 
@@ -19,7 +19,7 @@
 </strong></li>
   <li>Rode o Projeto <strong>npm run start</strong></li>
 </ol>
-<li>OBS foi criado um cluster em nuvem, portanto não é necessário configurar bando de bados, esse usuário inspira no dia 23/11/2022.</li>
+<li>OBS foi criado um cluster em nuvem, portanto não é necessário configurar banco de bados,foi enviado no conteudo do email o usuario. Esse usuário inspira no dia 23/11/2022.</li>
 
 # Rodar os testes de integração
 

@@ -1,15 +1,12 @@
 const validateCPF = async (req, res, next) => {
   const { cpf } = req.body;
 
-  if (!cpf)
-    return res
-      .status(400)
-      .json({ message: "O campo CPF não pode estar vázio" });
+  if (!cpf) return res.status(400).json({ message: "The CPF does not empty" });
 
   if (cpf.length !== 11) {
     return res
       .status(400)
-      .json({ message: "O campo CPF deve conter 11 números" });
+      .json({ message: "The CPF field must contain 11 numbers" });
   }
   next();
 };
